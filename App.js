@@ -12,6 +12,18 @@ export default function App() {
   function calculaIMC(){
     var resultado = peso / (parseFloat(altura) + parseFloat(altura))  
     var resultado = resultado.toFixed(2)
+    if (resultado < 18.5) {
+      alert("Seu IMC de " + resultado + " esta abaixo do peso!")
+    }
+    else if (resultado >=18.5 && resultado<24.9) {
+      alert("Seu IMC de " + resultado + " esta normal!")
+    }
+    else if (resultado >=25 && resultado<29.9) {
+      alert("Seu IMC de " + resultado + " esta na faixa de sobrepeso!")
+    }
+    else if (resultado >= 30) {
+      alert("Seu IMC de " + resultado + " esta na faixa de obesidade!")
+    }
     setIMC(resultado)
   }
 
@@ -55,7 +67,7 @@ export default function App() {
 
             {/* checkbox */}
             <View style={[styles.ident3]}>
-              <Text style={{ fontSize: 20,fontWeight: 'bold', color:"#FAFAFA"}}> Sua Faixa Etária </Text>
+              <Text style={{ fontSize: 20,fontWeight: 'bold', color:"#FAFAFA", marginTop:20}}> Sua Faixa Etária </Text>
             </View>
             <Picker
                 selectedValue={lingua}
@@ -69,15 +81,16 @@ export default function App() {
             </Picker>
 
             {/* checkbox */}
-
+            
             <View>
             <TouchableOpacity style={styles.identBotao}>
                 <Text style={{fontSize: 20,fontWeight:'bold',textAlign:"center"}} onPress={() => calculaIMC(peso,altura)}>Calcular peso</Text>
               </TouchableOpacity>
             </View>
-            <Text>Peso: {peso}kg | Altura: {altura}</Text>
+            <Text style={{marginTop:40}}>Peso: {peso}kg | Altura: {altura}</Text>
               <Text style={styles.ident5}>IMC: {imc}</Text>
         </View>
+        
 
     )
 }
@@ -93,6 +106,7 @@ const styles = StyleSheet.create({
     },
     views: {
       alignItems: "center",
+      margin:8,
     },
 
     ident1: {
@@ -138,7 +152,7 @@ const styles = StyleSheet.create({
       width: 200,
       height: 50,
       borderRadius:40,
-      marginTop:50,
+      marginTop:40,
       marginBottom:20,
       elevation:8,
     },
